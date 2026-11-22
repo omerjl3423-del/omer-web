@@ -1,1 +1,185 @@
 
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ömer_ | Siber Güvenlik & Yazılım</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        body {
+            background-color: #050505;
+            color: #00ff41;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            opacity: 0.22;
+        }
+        .terminal-box {
+            position: relative;
+            z-index: 2;
+            background: rgba(10, 15, 10, 0.85);
+            border: 1px solid #00ff41;
+            box-shadow: 0 0 25px rgba(0, 255, 65, 0.2);
+            border-radius: 8px;
+            width: 90%;
+            max-width: 650px;
+            padding: 30px;
+            backdrop-filter: blur(4px);
+        }
+        .terminal-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px solid rgba(0, 255, 65, 0.3);
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        .red { background: #ff5f56; }
+        .yellow { background: #ffbd2e; }
+        .green { background: #27c93f; }
+        .status {
+            margin-left: auto;
+            font-size: 0.8rem;
+            color: #00ff41;
+            letter-spacing: 1px;
+        }
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            text-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
+        }
+        .cursor {
+            display: inline-block;
+            width: 10px;
+            background-color: #00ff41;
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+        p {
+            color: #b8f7c4;
+            line-height: 1.6;
+            font-size: 1rem;
+            margin-bottom: 25px;
+            min-height: 50px;
+        }
+        .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .btn {
+            text-decoration: none;
+            color: #050505;
+            background: #00ff41;
+            padding: 12px 22px;
+            font-weight: bold;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            border: 1px solid #00ff41;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background: transparent;
+            color: #00ff41;
+            box-shadow: 0 0 15px rgba(0, 255, 65, 0.4);
+        }
+        .btn-outline {
+            background: transparent;
+            color: #00ff41;
+        }
+        .btn-outline:hover {
+            background: #00ff41;
+            color: #050505;
+        }
+    </style>
+</head>
+<body>
+
+<canvas id="matrix"></canvas>
+
+<div class="terminal-box">
+    <div class="terminal-header">
+        <div class="dot red"></div>
+        <div class="dot yellow"></div>
+        <div class="dot green"></div>
+        <span class="status">[ SİSTEM GÜVENLİ // HTTPS ]</span>
+    </div>
+    <h1>&gt; Ömer_<span class="cursor">&nbsp;</span></h1>
+    <p id="typing-text"></p>
+    <div class="btn-group">
+        <a href="mailto:omerjl3423@gmail.com" class="btn">[ İLETİŞİME GEÇ ]</a>
+        <a href="#projeler" class="btn btn-outline" onclick="alert('Sistem Modülleri: Zmeex - Shadow & Siber Güvenlik Araçları Aktif!')">[ ▶ ZMEEX - SHADOW ]</a>
+    </div>
+</div>
+
+<script>
+    // Matrix Kod Yağmuru Animasyonu
+    const canvas = document.getElementById('matrix');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const chars = '01010101ABCDEFGHIJKLMNOPQRSTUVWXYZ#$%&*+';
+    const fontSize = 14;
+    const columns = canvas.width / fontSize;
+    const drops = Array(Math.floor(columns)).fill(1);
+
+    function drawMatrix() {
+        ctx.fillStyle = 'rgba(5, 5, 5, 0.08)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = '#00ff41';
+        ctx.font = fontSize + 'px monospace';
+
+        for (let i = 0; i < drops.length; i++) {
+            const text = chars[Math.floor(Math.random() * chars.length)];
+            ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+            if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                drops[i] = 0;
+            }
+            drops[i]++;
+        }
+    }
+    setInterval(drawMatrix, 40);
+
+    // Daktilo Yazı Animasyonu
+    const message = "Dijital dünyama hoş geldin. Burası siber güvenlik, yazılım geliştirme ve sistem savunması üzerine çalışmalarımı paylaştığım kişisel terminalim.";
+    let index = 0;
+    function typeWriter() {
+        if (index < message.length) {
+            document.getElementById("typing-text").innerHTML += message.charAt(index);
+            index++;
+            setTimeout(typeWriter, 35);
+        }
+    }
+    window.onload = typeWriter;
+
+    window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    });
+</script>
+
+</body>
+</html>
