@@ -1,201 +1,93 @@
+
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ömer_ | Siber Güvenlik & Yazılım Çözümleri</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', 'Courier New', monospace; }
-        body {
-            background-color: #080b10;
-            color: #e2e8f0;
-            overflow-x: hidden;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-            padding: 40px 15px;
-        }
-        canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 1;
-            opacity: 0.4;
-        }
-        .container {
-            position: relative;
-            z-index: 2;
-            width: 100%;
-            max-width: 820px;
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
-            animation: fadeIn 0.9s ease-out;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(15px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .card {
-            background: rgba(13, 19, 28, 0.82);
-            border: 1px solid rgba(56, 189, 248, 0.25);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
-            border-radius: 14px;
-            padding: 35px;
-            backdrop-filter: blur(12px);
-        }
-        .badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.78rem;
-            color: #38bdf8;
-            background: rgba(56, 189, 248, 0.1);
-            border: 1px solid rgba(56, 189, 248, 0.25);
-            padding: 6px 14px;
-            border-radius: 20px;
-            margin-bottom: 18px;
-        }
-        .pulse {
-            width: 8px;
-            height: 8px;
-            background-color: #38bdf8;
-            border-radius: 50%;
-            animation: pulse 2s infinite;
-        }
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.7); }
-            70% { box-shadow: 0 0 0 8px rgba(56, 189, 248, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(56, 189, 248, 0); }
-        }
-        h1 { font-size: 2.3rem; color: #ffffff; margin-bottom: 12px; }
-        h1 span { color: #38bdf8; }
-        p { color: #94a3b8; line-height: 1.65; font-size: 1rem; margin-bottom: 24px; }
-        .actions { display: flex; flex-wrap: wrap; gap: 12px; }
-        .btn {
-            text-decoration: none;
-            padding: 11px 22px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: 0.25s;
-            cursor: pointer;
-            display: inline-block;
-        }
-        .btn-primary { background: #38bdf8; color: #080b10; border: 1px solid #38bdf8; }
-        .btn-primary:hover { background: #7dd3fc; transform: translateY(-2px); }
-        .btn-secondary { background: rgba(255, 255, 255, 0.04); color: #e2e8f0; border: 1px solid rgba(255, 255, 255, 0.12); }
-        .btn-secondary:hover { border-color: #38bdf8; color: #38bdf8; }
-        
-        .section-title { font-size: 1.2rem; color: #ffffff; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; }
-        .service-item {
-            background: rgba(8, 11, 16, 0.65);
-            border: 1px solid rgba(56, 189, 248, 0.18);
-            border-radius: 10px;
-            padding: 20px;
-            transition: 0.3s;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-        .service-item:hover { border-color: #38bdf8; transform: translateY(-3px); }
-        .service-item h3 { color: #38bdf8; font-size: 1.05rem; margin-bottom: 8px; }
-        .service-item p { font-size: 0.88rem; margin-bottom: 16px; color: #94a3b8; }
-        .price-tag { font-size: 0.82rem; color: #38bdf8; font-weight: bold; margin-bottom: 10px; display: block; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ömer | Siber Güvenlik & Yazılım</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',system-ui,sans-serif}
+  body{background:#090514;color:#fff;min-height:100vh;display:flex;justify-content:center;align-items:center;padding:24px;overflow-x:hidden;position:relative}
+  .orb{position:fixed;border-radius:50%;filter:blur(90px);z-index:0;opacity:.55;animation:float 10s infinite alternate ease-in-out}
+  .o1{width:340px;height:340px;background:#ec4899;top:-60px;left:-60px}
+  .o2{width:380px;height:380px;background:#8b5cf6;bottom:-80px;right:-60px;animation-delay:-3s}
+  .o3{width:260px;height:260px;background:#06b6d4;top:40%;left:55%;animation-delay:-6s}
+  @keyframes float{0%{transform:translate(0,0) scale(1)}100%{transform:translate(35px,-40px) scale(1.15)}}
+  .wrap{position:relative;z-index:1;max-width:820px;width:100%;display:grid;gap:22px;animation:pop .7s cubic-bezier(.16,1,.3,1)}
+  @keyframes pop{from{opacity:0;transform:scale(.95) translateY(20px)}to{opacity:1;transform:none}}
+  .box{background:rgba(18,12,36,.68);border:1px solid rgba(255,255,255,.14);border-radius:20px;padding:34px;backdrop-filter:blur(18px);box-shadow:0 25px 50px rgba(0,0,0,.5)}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:.78rem;font-weight:700;letter-spacing:1px;padding:6px 14px;border-radius:99px;background:linear-gradient(90deg,rgba(236,72,153,.2),rgba(6,182,212,.2));border:1px solid rgba(236,72,153,.4);color:#67e8f9;margin-bottom:18px}
+  .pulse{width:8px;height:8px;border-radius:50%;background:#ec4899;box-shadow:0 0 12px #ec4899;animation:blink 1.5s infinite}
+  @keyframes blink{50%{opacity:.3;transform:scale(1.3)}}
+  .hero-title{font-size:2.3rem;font-weight:800;margin-bottom:14px;min-height:58px;display:flex;align-items:center;flex-wrap:wrap}
+  .grad-text{background:linear-gradient(90deg,#06b6d4,#a855f7,#ec4899,#06b6d4);background-size:300%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:shine 5s linear infinite}
+  @keyframes shine{to{background-position:300%}}
+  .cursor{display:inline-block;width:3px;height:36px;background:#ec4899;margin-left:6px;animation:cur .8s infinite}
+  @keyframes cur{50%{opacity:0}}
+  p{color:#cbd5e1;line-height:1.65;margin-bottom:26px;font-size:1.02rem}
+  .btns{display:flex;flex-wrap:wrap;gap:14px}
+  .btn{padding:12px 24px;border-radius:12px;text-decoration:none;font-weight:700;font-size:.92rem;transition:.3s;cursor:pointer;border:none}
+  .p{background:linear-gradient(135deg,#ec4899,#8b5cf6);color:#fff;box-shadow:0 10px 25px rgba(236,72,153,.35)}
+  .p:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 15px 30px rgba(139,92,246,.5)}
+  .s{background:rgba(255,255,255,.07);color:#fff;border:1px solid rgba(255,255,255,.18)}
+  .s:hover{background:rgba(6,182,212,.15);border-color:#06b6d4;color:#67e8f9;transform:translateY(-3px)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:16px}
+  .card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);padding:22px;border-radius:16px;transition:.3s;position:relative;overflow:hidden}
+  .card:hover{transform:translateY(-6px);border-color:#ec4899;box-shadow:0 15px 30px rgba(236,72,153,.2)}
+  .card h3{font-size:1.08rem;margin-bottom:8px;color:#67e8f9}
+  .card p{font-size:.88rem;margin-bottom:16px;color:#94a3b8}
+  .card a{color:#f472b6;font-size:.88rem;text-decoration:none;font-weight:700}
+</style>
 </head>
 <body>
-
-<canvas id="network"></canvas>
-
-<div class="container">
-    <div class="card">
-        <div class="badge"><div class="pulse"></div> SİBER GÜVENLİK & YAZILIM ÇÖZÜMLERİ</div>
-        <h1>&gt; <span>Ömer_</span></h1>
-        <p>Web siteleri için kurumsal DDoS koruması, yüksek hızlı statik altyapı kurulumu ve özel yazılım geliştirme hizmetleri sunuyorum. Projenizi güvence altına almak için iletişime geçebilirsiniz.</p>
-        <div class="actions">
-            <a href="mailto:omerjl3423@://gmail.com" class="btn btn-primary">Hemen Teklif Al</a>
-            <a href="https://github.com" target="_blank" class="btn btn-secondary">GitHub</a>
-            <button class="btn btn-secondary" onclick="alert('Zmeex - Shadow projesi yakında aktif!')">Zmeex - Shadow</button>
-        </div>
+<div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>
+<div class="wrap">
+  <div class="box">
+    <div class="badge"><span class="pulse"></span>ÖMER // SİBER GÜVENLİK & YAZILIM</div>
+    <h1 class="hero-title"><span id="type" class="grad-text"></span><span class="cursor"></span></h1>
+    <p>Yeni nesil DDoS savunma sistemleri, ışık hızında web mimarileri ve özel siber güvenlik çözümleri geliştiriyorum. Projelerimi keşfet veya hemen iletişime geç.</p>
+    <div class="btns">
+      <a href="mailto:omerjl3423@://gmail.com" class="btn p">İletişime Geç</a>
+      <a href="https://github.com" target="_blank" class="btn s">GitHub Profilim</a>
+      <button class="btn s" onclick="alert('Zmeex - Shadow projesi aktif!')">Zmeex - Shadow</button>
     </div>
-
-    <div class="card">
-        <div class="section-title">// Sunduğum Hizmetler</div>
-        <div class="grid">
-            <div class="service-item">
-                <div>
-                    <h3>DDoS & Güvenlik Kalkanı</h3>
-                    <p>Mevcut web sitenize Cloudflare koruması, SSL ve güvenlik başlıkları (CSP/HSTS) entegrasyonu.</p>
-                </div>
-                <div>
-                    <span class="price-tag">Anahtar Teslim Kurulum</span>
-                    <a href="mailto:omerjl3423@://gmail.com" class="btn btn-secondary" style="width:100%; text-align:center;">Sipariş Ver</a>
-                </div>
-            </div>
-
-            <div class="service-item">
-                <div>
-                    <h3>Kapanmaz Web Sitesi</h3>
-                    <p>Veritabanı açığı olmayan, Edge CDN üzerinde ışık hızında çalışan kişisel veya kurumsal web sitesi.</p>
-                </div>
-                <div>
-                    <span class="price-tag">Özel Tasarım & Yayın</span>
-                    <a href="mailto:omerjl3423@://gmail.com" class="btn btn-secondary" style="width:100%; text-align:center;">Sipariş Ver</a>
-                </div>
-            </div>
-
-            <div class="service-item">
-                <div>
-                    <h3>Linux & Otomasyon</h3>
-                    <p>Sunucu yapılandırma, yedekleme otomasyonları ve özel Python/Bash araçları geliştirme.</p>
-                </div>
-                <div>
-                    <span class="price-tag">Özel Yazılım Çözümü</span>
-                    <a href="mailto:omerjl3423@://gmail.com" class="btn btn-secondary" style="width:100%; text-align:center;">Sipariş Ver</a>
-                </div>
-            </div>
-        </div>
+  </div>
+  <div class="box">
+    <h2 style="font-size:1.15rem;color:#e2e8f0">// Hizmetler & Çözümler</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>DDoS & Güvenlik Kalkanı</h3>
+        <p>Cloudflare kurumsal koruma, SSL ve gelişmiş güvenlik başlıkları kurulumu.</p>
+        <a href="mailto:omerjl3423@://gmail.com">Teklif Al &rarr;</a>
+      </div>
+      <div class="card">
+        <h3>Modern & Hızlı Web Sitesi</h3>
+        <p>Veritabanı açığı olmayan, animasyonlu ve yüksek hızlı özel web tasarımı.</p>
+        <a href="mailto:omerjl3423@://gmail.com">Teklif Al &rarr;</a>
+      </div>
+      <div class="card">
+        <h3>Linux & Otomasyon</h3>
+        <p>Sunucu güvenliği, yedekleme sistemleri ve özel Python/Bash araçları.</p>
+        <a href="mailto:omerjl3423@://gmail.com">Teklif Al &rarr;</a>
+      </div>
     </div>
+  </div>
 </div>
-
 <script>
-    const canvas = document.getElementById('network');
-    const ctx = canvas.getContext('2d');
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    const particles = Array.from({ length: 50 }, () => ({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.5,
-        vy: (Math.random() - 0.5) * 0.5,
-        radius: 1.8
-    }));
-    function animate() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.fillStyle = '#38bdf8';
-        for (let i = 0; i < particles.length; i++) {
-            const p = particles[i];
-            p.x += p.vx; p.y += p.vy;
-            if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
-            if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
-            ctx.beginPath(); ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2); ctx.fill();
-            for (let j = i + 1; j < particles.length; j++) {
-                const p2 = particles[j];
-                const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
-                if (dist < 130) {
-                    ctx.strokeStyle = `rgba(56, 189, 248, ${1 - dist / 130})`;
-                    ctx.lineWidth = 0.6;
-                    ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(p2.x, p2.y); ctx.stroke();
-                }
-            }
-        }
-        requestAnimationFrame(animate);
-    }
-    animate();
-    window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
+const words = ["Dijital Dünyama Hoş Geldin.", "Siber Güvenlik & Yazılım.", "Geleceği Kodluyorum."];
+let i = 0, j = 0, isDel = false;
+function typeLoop() {
+  const cur = words[i];
+  document.getElementById("type").textContent = cur.substring(0, j);
+  if (!isDel && j < cur.length) { j++; setTimeout(typeLoop, 75); }
+  else if (isDel && j > 0) { j--; setTimeout(typeLoop, 40); }
+  else {
+    isDel = !isDel;
+    if (!isDel) i = (i + 1) % words.length;
+    setTimeout(typeLoop, isDel ? 1600 : 400);
+  }
+}
+typeLoop();
 </script>
 </body>
-</html>
+</html 
