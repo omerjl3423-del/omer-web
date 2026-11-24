@@ -4,7 +4,7 @@ export default {
     if (request.method === "POST" && url.pathname === "/api/send") {
       try {
         const data = await request.json();
-        const token = "9065128822:AAECKfppUqa1bO6zjiQmRM3PUhmWs552DtTo";
+        const token = "9065128822:AAECKfppUqa1bO6zjiQmRM3PUhmWs52DtTo";
         const chatId = "8963684508";
         const text = "🚀 YENİ SİTE SİPARİŞİ\n\n👤 Gönderen: " + data.name + "\n📞 İletişim: " + data.contact + "\n🛠 Hizmet: " + data.service + "\n📝 Mesaj: " + data.message;
         const tgUrl = ["https://", "api.", "telegram.org/", "bot", token, "/sendMessage"].join("");
@@ -25,3 +25,4 @@ export default {
     return env.ASSETS.fetch(request);
   }
 };
+
