@@ -21,8 +21,8 @@ body{background:#090514;color:#fff;min-height:100vh;display:flex;justify-content
 p{color:#cbd5e1;line-height:1.6;margin-bottom:20px}
 .stats,.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-bottom:20px}
 .st,.card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);padding:18px;border-radius:14px}
-.card{display:flex;flex-direction:column;justify-content:space-between;transition:.3s}
-.card:hover{transform:translateY(-5px);border-color:#ec4899}
+.card{display:flex;flex-direction:column;justify-content:space-between;transition:.3s;cursor:pointer}
+.card:hover{transform:translateY(-5px);border-color:#ec4899;box-shadow:0 12px 25px rgba(236,72,153,.2)}
 .price{font-size:1.5rem;font-weight:800;margin:8px 0 12px}
 .price span{font-size:.8rem;color:#94a3b8}
 ul{list-style:none;margin-bottom:16px;display:grid;gap:6px;font-size:.85rem;color:#cbd5e1}
@@ -37,10 +37,20 @@ input,textarea,select{width:100%;padding:12px 14px;border-radius:10px;background
 .term-in{display:flex;align-items:center;gap:8px;color:#ec4899;font-weight:700}
 .term-in input{background:transparent;border:none;padding:0;font-family:monospace;color:#fff}
 .scan{display:flex;gap:10px;margin-top:12px}
+#modal{position:fixed;inset:0;background:rgba(5,3,12,.85);backdrop-filter:blur(10px);z-index:50;display:none;justify-content:center;align-items:center;padding:20px}
+.mbox{background:#120c24;border:1px solid #ec4899;border-radius:20px;max-width:480px;width:100%;padding:28px;box-shadow:0 20px 50px rgba(236,72,153,.3)}
 </style>
 </head>
 <body>
 <div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>
+<div id="modal" onclick="if(event.target===this)this.style.display='none'">
+  <div class="mbox">
+    <h3 id="mt" style="color:#67e8f9;font-size:1.3rem;margin-bottom:6px"></h3>
+    <div id="mp" style="color:#ec4899;font-weight:800;font-size:1.2rem;margin-bottom:14px"></div>
+    <p id="md" style="font-size:.95rem;margin-bottom:20px"></p>
+    <div class="btns"><button class="btn p" id="mb">Bu Paketi Seç & Sipariş Ver</button><button class="btn s" onclick="modal.style.display='none'">Kapat</button></div>
+  </div>
+</div>
 <div class="wrap">
 <div class="box">
   <div class="badge"><span class="pulse"></span>ÖMER // SİSTEMLER AKTİF & KORUMALI</div>
@@ -68,14 +78,15 @@ input,textarea,select{width:100%;padding:12px 14px;border-radius:10px;background
   <div id="sr" style="margin-top:10px;color:#67e8f9;font-size:.9rem;font-weight:600"></div>
 </div>
 <div class="box">
-  <h2 style="font-size:1.15rem;margin-bottom:14px">// Hizmet Paketleri & Fiyatlar (6 Özel Paket)</h2>
+  <h2 style="font-size:1.15rem;margin-bottom:6px">// Hizmet Paketleri & Fiyatlar</h2>
+  <p style="font-size:.85rem;margin-bottom:14px">Detaylı bilgi ve ne işe yaradığını görmek için paketlerin üzerine tıklayın.</p>
   <div class="grid">
-    <div class="card" style="border-color:#ec4899"><div><h3 style="color:#67e8f9">DDoS & Güvenlik Kalkanı</h3><div class="price">500 TL <span>/ tek sefer</span></div><ul><li>Cloudflare DNS & DDoS</li><li>Kırılmaz SSL (HTTPS)</li><li>Hız & Önbellek Ayarı</li></ul></div><button class="btn p" onclick="sel('DDoS & Güvenlik Kalkanı (500 TL)')">Paketi Seç</button></div>
-    <div class="card"><div><h3 style="color:#67e8f9">Modern Web Sitesi</h3><div class="price">1.500 TL <span>/ başlangıç</span></div><ul><li>Neon & Animasyonlu Tasarım</li><li>Ücretsiz Edge Hosting</li><li>Telegram Sipariş Formu</li></ul></div><button class="btn s" onclick="sel('Modern Web Sitesi (1.500 TL)')">Paketi Seç</button></div>
-    <div class="card"><div><h3 style="color:#67e8f9">Link-in-Bio Kartvizit</h3><div class="price">350 TL <span>/ tek sefer</span></div><ul><li>Instagram / TikTok Biyo Sayfası</li><li>Özel Tasarım & Hızlı Açılış</li><li>Ücretsiz Yayınlama</li></ul></div><button class="btn s" onclick="sel('Link-in-Bio Kartvizit (350 TL)')">Paketi Seç</button></div>
-    <div class="card"><div><h3 style="color:#67e8f9">Sosyal Medya 2FA & Koruma</h3><div class="price">400 TL <span>/ kurulum</span></div><ul><li>İki Faktörlü Koruma (2FA)</li><li>Oltalama (Phishing) Kalkanı</li><li>Hesap Kurtarma Ayarları</li></ul></div><button class="btn s" onclick="sel('Sosyal Medya 2FA & Koruma (400 TL)')">Paketi Seç</button></div>
-    <div class="card"><div><h3 style="color:#67e8f9">Site Hızlandırma & CDN</h3><div class="price">450 TL <span>/ optimizasyon</span></div><ul><li>Önbellekleme & Görsel Sıkıştırma</li><li>1-2 Saniye Açılış Hızı</li><li>Google Hız Puanı Artışı</li></ul></div><button class="btn s" onclick="sel('Site Hızlandırma & CDN (450 TL)')">Paketi Seç</button></div>
-    <div class="card"><div><h3 style="color:#67e8f9">Kurumsal E-Posta & SSL</h3><div class="price">300 TL <span>/ kurulum</span></div><ul><li>info@siteadi.com Yönlendirme</li><li>Güvenlik Başlıkları (HSTS)</li><li>Gmail Entegrasyonu</li></ul></div><button class="btn s" onclick="sel('Kurumsal E-Posta & SSL (300 TL)')">Paketi Seç</button></div>
+    <div class="card" style="border-color:#ec4899" onclick="info(0)"><div><h3 style="color:#67e8f9">DDoS & Güvenlik Kalkanı</h3><div class="price">500 TL <span>/ tek sefer</span></div><ul><li>Cloudflare DNS & DDoS</li><li>Kırılmaz SSL (HTTPS)</li><li>Hız & Önbellek Ayarı</li></ul></div><button class="btn p">Ne İşe Yarar? / Seç</button></div>
+    <div class="card" onclick="info(1)"><div><h3 style="color:#67e8f9">Modern Web Sitesi</h3><div class="price">1.500 TL <span>/ başlangıç</span></div><ul><li>Neon & Animasyonlu Tasarım</li><li>Ücretsiz Edge Hosting</li><li>Telegram Sipariş Formu</li></ul></div><button class="btn s">Ne İşe Yarar? / Seç</button></div>
+    <div class="card" onclick="info(2)"><div><h3 style="color:#67e8f9">Link-in-Bio Kartvizit</h3><div class="price">350 TL <span>/ tek sefer</span></div><ul><li>Instagram / TikTok Biyo Sayfası</li><li>Özel Tasarım & Hızlı Açılış</li><li>Ücretsiz Yayınlama</li></ul></div><button class="btn s">Ne İşe Yarar? / Seç</button></div>
+    <div class="card" onclick="info(3)"><div><h3 style="color:#67e8f9">Sosyal Medya 2FA & Koruma</h3><div class="price">400 TL <span>/ kurulum</span></div><ul><li>İki Faktörlü Koruma (2FA)</li><li>Oltalama (Phishing) Kalkanı</li><li>Hesap Kurtarma Ayarları</li></ul></div><button class="btn s">Ne İşe Yarar? / Seç</button></div>
+    <div class="card" onclick="info(4)"><div><h3 style="color:#67e8f9">Site Hızlandırma & CDN</h3><div class="price">450 TL <span>/ optimizasyon</span></div><ul><li>Önbellekleme & Görsel Sıkıştırma</li><li>1-2 Saniye Açılış Hızı</li><li>Google Hız Puanı Artışı</li></ul></div><button class="btn s">Ne İşe Yarar? / Seç</button></div>
+    <div class="card" onclick="info(5)"><div><h3 style="color:#67e8f9">Kurumsal E-Posta & SSL</h3><div class="price">300 TL <span>/ kurulum</span></div><ul><li>info@siteadi.com Yönlendirme</li><li>Güvenlik Başlıkları (HSTS)</li><li>Gmail Entegrasyonu</li></ul></div><button class="btn s">Ne İşe Yarar? / Seç</button></div>
   </div>
 </div>
 <div class="box" id="iletisim">
@@ -91,6 +102,15 @@ input,textarea,select{width:100%;padding:12px 14px;border-radius:10px;background
 </div>
 </div>
 <script>
+const pkgs=[
+  {t:"DDoS & Güvenlik Kalkanı",p:"500 TL (Tek Seferlik)",v:"DDoS & Güvenlik Kalkanı (500 TL)",d:"Web sitenize yapılan kötü niyetli trafik (DDoS) saldırılarını engeller, sunucunuzun çökmesini önler ve sitenizi kırılmaz HTTPS (SSL) sertifikasıyla koruma altına alır. Mevcut bir web sitesi olup saldırı alan veya güvenliğini artırmak isteyen herkes içindir."},
+  {t:"Modern Web Sitesi",p:"1.500 TL (Başlangıç)",v:"Modern Web Sitesi (1.500 TL)",d:"İşletmeniz, kişisel markanız veya hizmetleriniz için aylık sunucu ücreti ödemeden ömür boyu kapanmayacak, yüksek hızlı ve animasyonlu özel web sitesi tasarımıdır. İletişim formundan gelen mesajlar doğrudan Telegram'ınıza düşer."},
+  {t:"Link-in-Bio Kartvizit",p:"350 TL (Tek Seferlik)",v:"Link-in-Bio Kartvizit (350 TL)",d:"Instagram, TikTok veya YouTube biyografinize koyabileceğiniz; tüm sosyal medya hesaplarınızı, ürün linklerinizi ve iletişim kanallarınızı şık bir tasarımla tek sayfada toplayan reklamsız dijital kartvizittir."},
+  {t:"Sosyal Medya 2FA & Koruma",p:"400 TL (Kurulum)",v:"Sosyal Medya 2FA & Koruma (400 TL)",d:"Sosyal medya hesaplarınızın çalınmasını önlemek için uygulama tabanlı iki faktörlü doğrulama (2FA), kurtarma kodları ve sahte mesajlara (phishing) karşı güvenlik ayarlarının eksiksiz yapılandırılmasıdır."},
+  {t:"Site Hızlandırma & CDN",p:"450 TL (Optimizasyon)",v:"Site Hızlandırma & CDN (450 TL)",d:"Yavaş açılan web sitenizi dünya genelindeki önbellek (CDN) sunucularına bağlayarak açılış süresini 1-2 saniyenin altına indirir. Ziyaretçilerin siteden çıkmasını önler ve Google arama sıralamanızı yükseltir."},
+  {t:"Kurumsal E-Posta & SSL",p:"300 TL (Kurulum)",v:"Kurumsal E-Posta & SSL (300 TL)",d:"Kendi alan adınıza özel (örneğin info@siteniz.com veya iletisim@siteniz.com) kurumsal e-posta adresleri oluşturur ve gelen tüm maillerin ücretsiz olarak mevcut Gmail kutunuza düşmesini sağlar."}
+];
+function info(idx){const x=pkgs[idx];mt.textContent=x.t;mp.textContent=x.p;md.textContent=x.d;mb.onclick=()=>{modal.style.display='none';sel(x.v)};modal.style.display='flex'}
 const w=["Dijital Dünyama Hoş Geldin.","Siber Güvenlik & Yazılım.","Sitelerinizi Koruma Altına Alın."];let i=0,j=0,d=0;
 function tp(){const c=w[i];type.textContent=c.slice(0,j);if(!d&&j<c.length){j++;setTimeout(tp,75)}else if(d&&j>0){j--;setTimeout(tp,40)}else{d=!d;if(!d)i=(i+1)%w.length;setTimeout(tp,d?1600:400)}}tp();
 function sel(v){ss.value=v;iletisim.scrollIntoView({behavior:'smooth'})}
