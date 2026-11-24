@@ -3,54 +3,90 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Siber Kimlik Testi | Ömer Siber</title>
+<title>Siber Kimlik Kartı | Ömer Siber</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',system-ui,sans-serif}
 body{background:#090514;color:#fff;min-height:100vh;display:flex;justify-content:center;align-items:center;padding:20px;overflow-x:hidden}
-.orb{position:fixed;border-radius:50%;filter:blur(90px);z-index:0;opacity:.55}
-.o1{width:300px;height:300px;background:#ec4899;top:-50px;left:-50px}.o2{width:340px;height:340px;background:#8b5cf6;bottom:-60px;right:-50px}
-.card{position:relative;z-index:1;max-width:440px;width:100%;background:rgba(18,12,36,.82);border:1px solid rgba(236,72,153,.45);border-radius:24px;padding:28px;backdrop-filter:blur(18px);box-shadow:0 20px 50px rgba(0,0,0,.6);text-align:center}
-.tag{display:inline-block;font-size:.75rem;font-weight:800;padding:5px 12px;border-radius:99px;background:rgba(6,182,212,.18);color:#67e8f9;border:1px solid rgba(6,182,212,.4);margin-bottom:14px}
-h1{font-size:1.75rem;font-weight:900;background:linear-gradient(90deg,#06b6d4,#ec4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:10px}
+.orb{position:fixed;border-radius:50%;filter:blur(90px);z-index:0;opacity:.6}
+.o1{width:320px;height:320px;background:#ec4899;top:-60px;left:-60px}.o2{width:350px;height:350px;background:#8b5cf6;bottom:-60px;right:-60px}
+.box{position:relative;z-index:1;max-width:440px;width:100%;background:rgba(18,12,36,.85);border:1px solid rgba(236,72,153,.5);border-radius:26px;padding:28px;backdrop-filter:blur(20px);box-shadow:0 25px 60px rgba(0,0,0,.7);text-align:center}
+.tag{display:inline-block;font-size:.74rem;font-weight:800;letter-spacing:1px;padding:6px 14px;border-radius:99px;background:rgba(6,182,212,.18);color:#67e8f9;border:1px solid rgba(6,182,212,.4);margin-bottom:14px}
+h1{font-size:1.85rem;font-weight:900;background:linear-gradient(90deg,#06b6d4,#a855f7,#ec4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:10px}
 p{color:#cbd5e1;font-size:.92rem;line-height:1.5;margin-bottom:18px}
-input{width:100%;padding:13px 16px;border-radius:12px;background:rgba(9,5,20,.8);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:.95rem;margin-bottom:14px;outline:none;text-align:center}
-.opt{width:100%;padding:13px;margin-bottom:10px;border-radius:12px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.15);color:#fff;font-weight:600;cursor:pointer;transition:.2s;font-size:.9rem}
-.opt:hover{border-color:#ec4899;background:rgba(236,72,153,.2)}
-.btn{width:100%;padding:14px;border-radius:14px;border:none;background:linear-gradient(135deg,#ec4899,#8b5cf6);color:#fff;font-weight:800;font-size:1rem;cursor:pointer;margin-top:6px;text-decoration:none;display:inline-block}
-.story{background:linear-gradient(160deg,#13092b,#090514);border:2px solid #06b6d4;border-radius:20px;padding:24px;margin-bottom:16px;box-shadow:0 0 30px rgba(6,182,212,.25)}
-.score{font-size:3rem;font-weight:900;color:#ec4899;margin:8px 0}
-.alias{font-family:monospace;font-size:1.1rem;color:#67e8f9;background:rgba(6,182,212,.15);padding:6px 14px;border-radius:8px;display:inline-block;margin-bottom:10px}
+input{width:100%;padding:14px 16px;border-radius:14px;background:rgba(9,5,20,.85);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:1rem;margin-bottom:14px;outline:none;text-align:center}
+input:focus{border-color:#ec4899}
+.opt{width:100%;padding:14px;margin-bottom:10px;border-radius:14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.15);color:#fff;font-weight:600;cursor:pointer;transition:.2s;font-size:.92rem;text-align:left}
+.opt:hover{border-color:#ec4899;background:rgba(236,72,153,.22);transform:translateX(4px)}
+.btn{width:100%;padding:14px;border-radius:14px;border:none;background:linear-gradient(135deg,#ec4899,#8b5cf6);color:#fff;font-weight:800;font-size:1rem;cursor:pointer;margin-top:8px;text-decoration:none;display:inline-block;box-shadow:0 10px 25px rgba(236,72,153,.35)}
+.btn2{background:linear-gradient(135deg,#06b6d4,#3b82f6);box-shadow:0 10px 25px rgba(6,182,212,.3)}
+.s-card{background:linear-gradient(160deg,#160b30,#090514);border:2px solid #ec4899;border-radius:22px;padding:24px;margin-bottom:16px;text-align:left;position:relative;overflow:hidden}
+.bar-bg{width:100%;height:8px;background:rgba(255,255,255,.1);border-radius:99px;margin:6px 0 14px;overflow:hidden}
+.bar-fill{height:100%;background:linear-gradient(90deg,#06b6d4,#ec4899);border-radius:99px}
 </style>
 </head>
 <body>
 <div class="orb o1"></div><div class="orb o2"></div>
-<div class="card" id="app">
-  <span class="tag">⚡ SİBER ANALİZ // 15 SANİYE</span>
-  <h1>Siber Seviyen Kaç?</h1>
-  <p>Dijital dünyada ne kadar gizlisin yoksa kolay hedef misin? Adını yaz, 3 soruda siber kimliğini öğren ve Story'de paylaş!</p>
-  <input id="uname" placeholder="Adın veya @Instagram adın">
+<div class="box" id="app">
+  <span class="tag">⚡ SİBER KİMLİK ANALİZİ // 2026</span>
+  <h1>Dijital Ruhun Ne?</h1>
+  <p>İsmini veya @Instagram kullanıcı adını yaz, 3 soruda siber güvenlik karakterini öğren ve özel Story kartını tek tıkla indir!</p>
+  <input id="uname" placeholder="@kullaniciadin veya İsmin">
   <button class="btn" onclick="start()">Analizi Başlat &rarr;</button>
 </div>
+<canvas id="cv" width="1080" height="1920" style="display:none"></canvas>
 <script>
 const qs=[
-  {q:"1/3: Şifrelerinde doğum yılını veya adını kullanıyor musun?",a:[["Asla, karmaşık şifre kullanırım",35],["Bazen kolay olsun diye yaparım",15],["Evet, hepsi aynı şifre",0]]},
-  {q:"2/3: Instagram hesabında 2 Faktörlü Doğrulama (2FA) açık mı?",a:[["Evet, uygulama ile korumalı",35],["Sadece SMS açık",20],["Hayır, açık değil",0]]},
-  {q:"3/3: Tanımadığın bir DM linkine veya 'Telif İhlali' mesajına tıklar mısın?",a:[["Asla tıklamam, direkt engellerim",30],["Merak edip baktığım olur",10],["Evet, hemen tıklarım",0]]}
+  {q:"1/3: Şifrelerini nasıl seçersin?",a:[["Rastgele harf, rakam ve semboller kullanırım",35],["İsmim + doğum yılım klasik",10],["Hepsi aynı şifre, unutmam lazım",0]]},
+  {q:"2/3: Gece 03:00'te 'Hesabın çalınıyor tıkla' maili gelse?",a:[["Güler geçerim, linke asla tıklamam",35],["Önce bir korkar sonra kontrol ederim",15],["Panikle hemen şifremi girerim",0]]},
+  {q:"3/3: Kafe veya AVM'deki şifresiz Wi-Fi ağları?",a:[["VPN olmadan hayatta bağlanmam",30],["Sadece Instagram'a bakar çıkarım",15],["Bedava internet buldum mu affetmem",0]]}
 ];
-let step=0,pts=0,user="Anonim";
+let step=0,pts=0,user="Anonim",resData={};
 function start(){user=document.getElementById('uname').value.trim()||"Anonim";step=0;pts=0;render()}
 function render(){
-  if(step>=qs.length){showRes();return}
-  const cur=qs[step];
-  app.innerHTML=`<span class="tag">SORU ${step+1} / 3</span><h2 style="font-size:1.2rem;margin-bottom:16px">${cur.q}</h2>`+
-    cur.a.map(x=>`<button class="opt" onclick="ans(${x[1]})">${x[0]}</button>`).join('');
+  if(step>=qs.length){finish();return}
+  const c=qs[step];
+  app.innerHTML=`<span class="tag">SORU ${step+1} / 3</span><h2 style="font-size:1.25rem;margin-bottom:18px;text-align:left">${c.q}</h2>`+
+    c.a.map(x=>`<button class="opt" onclick="ans(${x})">⚡ ${x}</button>`).join('');
 }
 function ans(p){pts+=p;step++;render()}
-function showRes(){
-  let title="DİKKAT: KOLAY HEDEF ⚠️",alias="Target_"+user.replace(/[^a-zA-Z0-9]/g,'').slice(0,8),desc="Hesapların tehlikede! Şifrelerini güçlendirip 2FA korumasını mutlaka açmalısın.";
-  if(pts>=80){title="HAYALET HACKER (GHOST) 🥷",alias="Ghost_"+user.replace(/[^a-zA-Z0-9]/g,'').slice(0,8),desc="Dijital iz bırakmıyorsun! Siber farkındalığın üst düzeyde."}
-  else if(pts>=45){title="SİBER SAVUNMACI 🛡️",alias="Cyber_"+user.replace(/[^a-zA-Z0-9]/g,'').slice(0,8),desc="Fena değilsin ama birkaç küçük açık seni riske atabilir."}
-  app.innerHTML=`<div class="story"><span class="tag">SİBER KİMLİK KARTI</span><div style="font-weight:700;color:#cbd5e1">${user}</div><div class="score">%${pts}</div><div class="alias">${alias}</div><h2 style="font-size:1.2rem;color:#fff;margin-bottom:8px">${title}</h2><p style="font-size:.85rem;margin-bottom:10px">${desc}</p><div style="font-size:.75rem;color:#67e8f9;font-weight:700">Sen de test et 👉 omersiber.vercel.app/test</div></div><p style="font-size:.82rem;margin-bottom:10px">📸 Ekran görüntüsü alıp Instagram Hikayende paylaş!</p><a href="/" class="btn">Hesabını Güvene Al & Siteye Git</a>`;
+function finish(){
+  const clean=user.replace(/[^a-zA-Z0-9_]/g,'').slice(0,10)||"Cyber";
+  let rank="KOLAY HEDEF ⚠️",alias="Target_"+clean,giz=25,sav=20,kar=40,note="Hesapların açık hedef! Acilen 2FA korumasını aktif etmelisin.";
+  if(pts>=80){rank="HAYALET HACKER 🥷",alias="Ghost_"+clean,giz=96,sav=92,kar=99,note="Dijital dünyada iz bırakmıyorsun. Tam bir siber gölgesin!";}
+  else if(pts>=45){rank="SİBER SAVUNMACI 🛡️",alias="Cyber_"+clean,giz=68,sav=74,kar=82,note="Fena değilsin ama küçük açıklar seni riske atabilir.";}
+  resData={user,pts,rank,alias,giz,sav,kar,note};
+  app.innerHTML=`
+    <div class="s-card">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+        <span class="tag" style="margin:0">SİBER KİMLİK KARTI</span>
+        <span style="font-family:monospace;color:#67e8f9;font-weight:700">${alias}</span>
+      </div>
+      <div style="font-size:1.1rem;font-weight:700;color:#cbd5e1">${user}</div>
+      <div style="font-size:2.4rem;font-weight:900;color:#ec4899;margin:4px 0">${rank}</div>
+      <p style="font-size:.85rem;margin-bottom:14px">${note}</p>
+      <div style="font-size:.8rem;display:flex;justify-content:space-between"><span>Gizlilik Seviyesi</span><b>%${giz}</b></div>
+      <div class="bar-bg"><div class="bar-fill" style="width:${giz}%"></div></div>
+      <div style="font-size:.8rem;display:flex;justify-content:space-between"><span>Siber Savunma</span><b>%${sav}</b></div>
+      <div class="bar-bg"><div class="bar-fill" style="width:${sav}%"></div></div>
+      <div style="font-size:.75rem;color:#67e8f9;text-align:center;margin-top:8px;font-weight:700">Sen de test et 👉 omersiber.vercel.app/test.html</div>
+    </div>
+    <button class="btn btn2" onclick="dlStory()">📥 Story Kartını İndir (PNG)</button>
+    <a href="/" class="btn">Hesabını Güvene Al & Ana Siteye Git</a>`;
+}
+function dlStory(){
+  const c=document.getElementById('cv'),x=c.getContext('2d');
+  const g=x.createLinearGradient(0,0,1080,1920);g.addColorStop(0,'#090514');g.addColorStop(0.5,'#1a0b36');g.addColorStop(1,'#090514');
+  x.fillStyle=g;x.fillRect(0,0,1080,1920);
+  x.strokeStyle='#ec4899';x.lineWidth=10;x.strokeRect(70,140,940,1640);
+  x.fillStyle='#67e8f9';x.font='bold 42px monospace';x.textAlign='center';x.fillText('⚡ SİBER KİMLİK KARTI // 2026',540,270);
+  x.fillStyle='#cbd5e1';x.font='bold 54px sans-serif';x.fillText(resData.user,540,410);
+  x.fillStyle='#ec4899';x.font='900 78px sans-serif';x.fillText(resData.rank,540,540);
+  x.fillStyle='#67e8f9';x.font='bold 46px monospace';x.fillText('Kod Adı: '+resData.alias,540,650);
+  x.fillStyle='#fff';x.font='38px sans-serif';x.fillText('Gizlilik: %'+resData.giz+'   |   Savunma: %'+resData.sav,540,820);
+  x.fillStyle='#94a3b8';x.font='36px sans-serif';x.fillText('Dijital Güvenlik Puanı: %'+resData.pts,540,920);
+  x.fillStyle='#ec4899';x.font='bold 44px sans-serif';x.fillText('SENİN SİBER SEVİYEN KAÇ?',540,1520);
+  x.fillStyle='#67e8f9';x.font='bold 48px monospace';x.fillText('omersiber.vercel.app/test.html',540,1600);
+  const a=document.createElement('a');a.download='siber-kimlik-story.png';a.href=c.toDataURL('image/png');a.click();
 }
 </script>
 </body>
