@@ -6,9 +6,10 @@ export default {
         const data = await request.json();
         const token = "9065128822:AAECKfppUqa1bO6zjiQmRM3PUhmWs552DtTo";
         const chatId = "8963684508";
-        const text = `🚀 YENİ SİTE SİPARİŞİ / MESAJI\n\n👤 Gönderen: ${data.name}\n📞 İletişim: ${data.contact}\n🛠 Hizmet: ${data.service}\n📝 Mesaj: ${data.message}`;
+        const text = "🚀 YENİ SİTE SİPARİŞİ\n\n👤 Gönderen: " + data.name + "\n📞 İletişim: " + data.contact + "\n🛠 Hizmet: " + data.service + "\n📝 Mesaj: " + data.message;
+        const tgUrl = ["https://", "api.", "telegram.org/", "bot", token, "/sendMessage"].join("");
 
-        const tgRes = await fetch(`https://telegram.org{token}/sendMessage`, {
+        const tgRes = await fetch(tgUrl, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ chat_id: chatId, text: text })
