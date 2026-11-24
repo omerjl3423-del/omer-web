@@ -41,8 +41,6 @@ input,textarea,select{width:100%;padding:12px 14px;border-radius:10px;background
 .scan{display:flex;gap:10px;margin-top:12px}
 #modal{position:fixed;inset:0;background:rgba(5,3,12,.85);backdrop-filter:blur(10px);z-index:50;display:none;justify-content:center;align-items:center;padding:20px}
 .mbox{background:#120c24;border:1px solid #ec4899;border-radius:20px;max-width:480px;width:100%;padding:28px}
-.game-box{background:rgba(5,3,12,.85);border:1px solid rgba(236,72,153,.4);border-radius:16px;padding:18px;text-align:center}
-#gv{width:100%;height:200px;background:#070412;border-radius:12px;border:1px solid rgba(255,255,255,.1);cursor:crosshair;display:block;margin:12px 0}
 </style>
 </head>
 <body>
@@ -75,14 +73,8 @@ input,textarea,select{width:100%;padding:12px 14px;border-radius:10px;background
   </div>
 </div>
 <div class="box">
-  <h2 style="font-size:1.15rem;margin-bottom:6px">// Eğlence Alanı: DDoS Savunma Oyunu & Siber Terminal</h2>
-  <p style="font-size:.86rem;margin-bottom:12px">Sunucuya saldıran kırmızı DDoS paketlerine tıklayarak patlatın ve sistemi koruyun!</p>
-  <div class="game-box">
-    <div style="display:flex;justify-content:space-between;font-weight:700;font-size:.9rem;color:#67e8f9"><span>Skor: <b id="scVal">0</b></span><span>Sunucu Sağlığı: <b id="hpVal" style="color:#10b981">%100</b></span></div>
-    <canvas id="gv"></canvas>
-    <button class="btn p" onclick="startGame()">🎮 Oyunu Başlat / Sıfırla</button>
-  </div>
-  <div class="term" style="margin-top:16px">
+  <h2 style="font-size:1.15rem;margin-bottom:12px">// Canlı Siber Terminal & Gerçek Site Analizi</h2>
+  <div class="term">
     <div class="term-out" id="to">Komutlar için 'help' yazıp Enter'a basın...</div>
     <div class="term-in"><span>omer@cyber:~$</span><input id="ti" placeholder="help, durum, fiyatlar, zmeex..."></div>
   </div>
@@ -116,10 +108,6 @@ input,textarea,select{width:100%;padding:12px 14px;border-radius:10px;background
 <script>
 const mctx=mx.getContext('2d');let MW=mx.width=innerWidth,MH=mx.height=innerHeight,drops=Array(Math.floor(MW/18)).fill(1);
 setInterval(()=>{if(!mx.classList.contains('on'))return;mctx.fillStyle='rgba(9,5,20,.12)';mctx.fillRect(0,0,MW,MH);mctx.fillStyle='#ec4899';mctx.font='15px monospace';drops.forEach((y,x)=>{mctx.fillText(Math.random()>.5?'1':'0',x*18,y*18);if(y*18>MH&&Math.random()>.97)drops[x]=0;drops[x]++})},50);
-const gctx=gv.getContext('2d');let gRun=0,score=0,hp=100,enemies=[];
-function startGame(){gv.width=gv.clientWidth;gv.height=200;score=0;hp=100;enemies=[];gRun=1;scVal.textContent=0;hpVal.textContent='%100';loopG()}
-function loopG(){if(!gRun)return;gctx.fillStyle='rgba(7,4,18,.35)';gctx.fillRect(0,0,gv.width,200);gctx.fillStyle='#06b6d4';gctx.fillRect(gv.width-26,75,18,50);if(Math.random()<.045)enemies.push({x:0,y:20+Math.random()*160,s:2+Math.random()*2.5});enemies.forEach((e,idx)=>{e.x+=e.s;gctx.beginPath();gctx.arc(e.x,e.y,12,0,7);gctx.fillStyle='#ec4899';gctx.fill();if(e.x>gv.width-26){enemies.splice(idx,1);hp=Math.max(0,hp-20);hpVal.textContent='%'+hp;if(hp<=0){gRun=0;gctx.fillStyle='#fff';gctx.font='bold 18px sans-serif';gctx.fillText('OYUN BİTTİ! Skor: '+score,gv.width/2-95,105)}}});if(gRun)requestAnimationFrame(loopG)}
-gv.onclick=e=>{if(!gRun)return;const r=gv.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top;enemies.forEach((en,idx)=>{if(Math.hypot(en.x-x,en.y-y)<22){enemies.splice(idx,1);score+=10;scVal.textContent=score}})};
 const pkgs=[
   {t:"DDoS & Güvenlik Kalkanı",p:"500 TL (Tek Seferlik)",v:"DDoS & Güvenlik Kalkanı (500 TL)",d:"Web sitenize yapılan kötü niyetli trafik (DDoS) saldırılarını engeller, sunucunuzun çökmesini önler ve sitenizi kırılmaz HTTPS (SSL) sertifikasıyla koruma altına alır."},
   {t:"Modern Web Sitesi",p:"1.500 TL (Başlangıç)",v:"Modern Web Sitesi (1.500 TL)",d:"İşletmeniz veya kişisel markanız için aylık sunucu ücreti ödemeden ömür boyu kapanmayacak, yüksek hızlı ve animasyonlu özel web sitesi tasarımıdır."},
@@ -128,7 +116,8 @@ const pkgs=[
   {t:"Site Hızlandırma & CDN",p:"450 TL (Optimizasyon)",v:"Site Hızlandırma & CDN (450 TL)",d:"Yavaş açılan web sitenizi dünya genelindeki önbellek (CDN) sunucularına bağlayarak açılış süresini 1-2 saniyenin altına indirir."},
   {t:"Kurumsal E-Posta & SSL",p:"300 TL (Kurulum)",v:"Kurumsal E-Posta & SSL (300 TL)",d:"Kendi alan adınıza özel (info@siteniz.com) kurumsal e-posta adresleri oluşturur ve gelen tüm maillerin mevcut Gmail kutunuza düşmesini sağlar."}
 ];
-function info(idx){const x=pkgs[idx];mt.textContent=x.t;mp.textContent=x.p;md.textContent=x.d;mb.onclick=()=>{modal.style.display='none';sel(x.v)};modal.style.display='flex'}
+function info(idx){const x=pkgs[idx];mt.textContent=x.t;mp.tex
+  tContent=x.p;md.textContent=x.d;mb.onclick=()=>{modal.style.display='none';sel(x.v)};modal.style.display='flex'}
 const w=["Dijital Dünyama Hoş Geldin.","Siber Güvenlik & Yazılım.","Sitelerinizi Koruma Altına Alın."];let i=0,j=0,d=0;
 function tp(){const c=w[i];type.textContent=c.slice(0,j);if(!d&&j<c.length){j++;setTimeout(tp,75)}else if(d&&j>0){j--;setTimeout(tp,40)}else{d=!d;if(!d)i=(i+1)%w.length;setTimeout(tp,d?1600:400)}}tp();
 function sel(v){ss.value=v;iletisim.scrollIntoView({behavior:'smooth'})}
