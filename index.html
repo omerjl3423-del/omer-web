@@ -15,7 +15,7 @@ body{background:#090514;color:#fff;min-height:100vh;display:flex;justify-content
 .orb{position:fixed;border-radius:50%;filter:blur(90px);z-index:0;opacity:.55;animation:fl 10s infinite alternate}
 .o1{width:340px;height:340px;background:#ec4899;top:-60px;left:-60px}.o2{width:380px;height:380px;background:#8b5cf6;bottom:-80px;right:-60px}.o3{width:260px;height:260px;background:#06b6d4;top:40%;left:55%}
 @keyframes fl{to{transform:translate(35px,-40px) scale(1.15)}}
-.wrap{position:relative;z-index:1;max-width:860px;width:100%;display:grid;gap:22px}
+.wrap{position:relative;z-index:1;max-width:920px;width:100%;display:grid;gap:22px}
 .box{background:rgba(18,12,36,.72);border:1px solid rgba(255,255,255,.14);border-radius:20px;padding:30px;backdrop-filter:blur(18px)}
 .badge{display:inline-flex;align-items:center;gap:8px;font-size:.78rem;font-weight:700;padding:6px 14px;border-radius:99px;background:rgba(236,72,153,.2);border:1px solid rgba(236,72,153,.4);color:#67e8f9;margin-bottom:16px}
 .pulse{width:8px;height:8px;border-radius:50%;background:#10b981;box-shadow:0 0 12px #10b981}
@@ -24,13 +24,13 @@ body{background:#090514;color:#fff;min-height:100vh;display:flex;justify-content
 @keyframes sh{to{background-position:300%}}
 .cur{width:3px;height:34px;background:#ec4899;margin-left:6px}
 p{color:#cbd5e1;line-height:1.6;margin-bottom:20px}
-.stats,.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-bottom:20px}
+.stats,.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-bottom:20px}
 .st,.card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);padding:18px;border-radius:14px}
 .card{display:flex;flex-direction:column;justify-content:space-between;transition:.3s}
 .card:hover{transform:translateY(-5px);border-color:#ec4899}
-.price{font-size:1.55rem;font-weight:800;margin:8px 0 12px}
+.price{font-size:1.5rem;font-weight:800;margin:8px 0 12px}
 .price span{font-size:.8rem;color:#94a3b8}
-ul{list-style:none;margin-bottom:16px;display:grid;gap:6px;font-size:.86rem;color:#cbd5e1}
+ul{list-style:none;margin-bottom:16px;display:grid;gap:6px;font-size:.85rem;color:#cbd5e1}
 li::before{content:"✓ ";color:#10b981;font-weight:900}
 .btns{display:flex;flex-wrap:wrap;gap:10px}
 .btn{padding:11px 20px;border-radius:12px;text-decoration:none;font-weight:700;font-size:.9rem;cursor:pointer;border:none;color:#fff}
@@ -51,7 +51,7 @@ input,textarea,select{width:100%;padding:12px 14px;border-radius:10px;background
 <div class="box">
   <div class="badge"><span class="pulse"></span>ÖMER // SİSTEMLER AKTİF & KORUMALI</div>
   <h1 class="hero"><span id="type" class="grad"></span><span class="cur"></span></h1>
-  <p>Kurumsal DDoS savunma mimarileri, sosyal medya hesap güvenliği, ışık hızında web tasarımları ve özel yazılım çözümleri geliştiriyorum.</p>
+  <p>Kurumsal DDoS savunma mimarileri, sosyal medya güvenliği, ışık hızında web tasarımları ve özel yazılım çözümleri geliştiriyorum.</p>
   <div class="stats">
     <div class="st"><small style="color:#94a3b8">DURUM</small><b style="color:#10b981">● DDoS Kalkanı Aktif</b></div>
     <div class="st"><small style="color:#94a3b8">ALTYAPI</small><b style="color:#67e8f9">%99.99 Uptime</b></div>
@@ -74,11 +74,14 @@ input,textarea,select{width:100%;padding:12px 14px;border-radius:10px;background
   <div id="sr" style="margin-top:10px;color:#67e8f9;font-size:.9rem;font-weight:600"></div>
 </div>
 <div class="box">
-  <h2 style="font-size:1.15rem;margin-bottom:14px">// Hizmet Paketleri & Fiyatlar</h2>
+  <h2 style="font-size:1.15rem;margin-bottom:14px">// Hizmet Paketleri & Fiyatlar (6 Özel Paket)</h2>
   <div class="grid">
     <div class="card" style="border-color:#ec4899"><div><h3 style="color:#67e8f9">DDoS & Güvenlik Kalkanı</h3><div class="price">500 TL <span>/ tek sefer</span></div><ul><li>Cloudflare DNS & DDoS</li><li>Kırılmaz SSL (HTTPS)</li><li>Hız & Önbellek Ayarı</li></ul></div><button class="btn p" onclick="sel('DDoS & Güvenlik Kalkanı (500 TL)')">Paketi Seç</button></div>
-    <div class="card"><div><h3 style="color:#67e8f9">Sosyal Medya Güvenliği & 2FA</h3><div class="price">400 TL <span>/ kurulum</span></div><ul><li>Hesap Koruma & 2FA Ayarı</li><li>Oltalama Kalkanı</li><li>Link-in-Bio Kartvizit Sayfası</li></ul></div><button class="btn s" onclick="sel('Sosyal Medya Güvenliği & 2FA (400 TL)')">Paketi Seç</button></div>
     <div class="card"><div><h3 style="color:#67e8f9">Modern Web Sitesi</h3><div class="price">1.500 TL <span>/ başlangıç</span></div><ul><li>Neon & Animasyonlu Tasarım</li><li>Ücretsiz Edge Hosting</li><li>Telegram Sipariş Formu</li></ul></div><button class="btn s" onclick="sel('Modern Web Sitesi (1.500 TL)')">Paketi Seç</button></div>
+    <div class="card"><div><h3 style="color:#67e8f9">Link-in-Bio Kartvizit</h3><div class="price">350 TL <span>/ tek sefer</span></div><ul><li>Instagram / TikTok Biyo Sayfası</li><li>Özel Tasarım & Hızlı Açılış</li><li>Ücretsiz Yayınlama</li></ul></div><button class="btn s" onclick="sel('Link-in-Bio Kartvizit (350 TL)')">Paketi Seç</button></div>
+    <div class="card"><div><h3 style="color:#67e8f9">Sosyal Medya 2FA & Koruma</h3><div class="price">400 TL <span>/ kurulum</span></div><ul><li>İki Faktörlü Koruma (2FA)</li><li>Oltalama (Phishing) Kalkanı</li><li>Hesap Kurtarma Ayarları</li></ul></div><button class="btn s" onclick="sel('Sosyal Medya 2FA & Koruma (400 TL)')">Paketi Seç</button></div>
+    <div class="card"><div><h3 style="color:#67e8f9">Site Hızlandırma & CDN</h3><div class="price">450 TL <span>/ optimizasyon</span></div><ul><li>Önbellekleme & Görsel Sıkıştırma</li><li>1-2 Saniye Açılış Hızı</li><li>Google Hız Puanı Artışı</li></ul></div><button class="btn s" onclick="sel('Site Hızlandırma & CDN (450 TL)')">Paketi Seç</button></div>
+    <div class="card"><div><h3 style="color:#67e8f9">Kurumsal E-Posta & SSL</h3><div class="price">300 TL <span>/ kurulum</span></div><ul><li>info@siteadi.com Yönlendirme</li><li>Güvenlik Başlıkları (HSTS)</li><li>Gmail Entegrasyonu</li></ul></div><button class="btn s" onclick="sel('Kurumsal E-Posta & SSL (300 TL)')">Paketi Seç</button></div>
   </div>
 </div>
 <div class="box" id="iletisim">
@@ -86,7 +89,7 @@ input,textarea,select{width:100%;padding:12px 14px;border-radius:10px;background
   <form id="cf">
     <input id="fn" placeholder="Adınız veya Takma Adınız" required>
     <input id="fc" placeholder="Dönüş Yapılacak E-posta veya @Telegram" required>
-    <select id="ss"><option>DDoS & Güvenlik Kalkanı (500 TL)</option><option>Sosyal Medya Güvenliği & 2FA (400 TL)</option><option>Modern Web Sitesi (1.500 TL)</option></select>
+    <select id="ss"><option>DDoS & Güvenlik Kalkanı (500 TL)</option><option>Modern Web Sitesi (1.500 TL)</option><option>Link-in-Bio Kartvizit (350 TL)</option><option>Sosyal Medya 2FA & Koruma (400 TL)</option><option>Site Hızlandırma & CDN (450 TL)</option><option>Kurumsal E-Posta & SSL (300 TL)</option></select>
     <textarea id="fm" rows="3" placeholder="Projenizden bahsedin..." required></textarea>
     <button type="submit" class="btn p">Telegram'a Gönder</button>
     <div id="res" style="color:#67e8f9;font-weight:700"></div>
@@ -101,7 +104,7 @@ function go(){b=1;setTimeout(()=>intro.classList.add('hide'),450)}
 const w=["Dijital Dünyama Hoş Geldin.","Siber Güvenlik & Yazılım.","Sitelerinizi Koruma Altına Alın."];let i=0,j=0,d=0;
 function tp(){const c=w[i];type.textContent=c.slice(0,j);if(!d&&j<c.length){j++;setTimeout(tp,75)}else if(d&&j>0){j--;setTimeout(tp,40)}else{d=!d;if(!d)i=(i+1)%w.length;setTimeout(tp,d?1600:400)}}tp();
 function sel(v){ss.value=v;iletisim.scrollIntoView({behavior:'smooth'})}
-function cmd(c){const m={help:"Komutlar: durum, fiyatlar, zmeex, iletisim",durum:"[AKTİF] Cloudflare DDoS Kalkanı çalışıyor (%99.99 Uptime).",fiyatlar:"DDoS: 500 TL | Sosyal Medya 2FA: 400 TL | Web: 1.500 TL",zmeex:"[ZMEEX - SHADOW] Özel güvenlik modülü yakında!",iletisim:"Aşağıdaki form veya @omerwebs üzerinden ulaşabilirsiniz."};to.textContent="> "+c+"\n"+(m[c.trim().toLowerCase()]||"Komut bulunamadı. 'help' yazın.")}
+function cmd(c){const m={help:"Komutlar: durum, fiyatlar, zmeex, iletisim",durum:"[AKTİF] Cloudflare DDoS Kalkanı çalışıyor (%99.99 Uptime).",fiyatlar:"DDoS: 500 TL | Web: 1.500 TL | Link-in-Bio: 350 TL | 2FA: 400 TL | Hız: 450 TL | E-Posta: 300 TL",zmeex:"[ZMEEX - SHADOW] Özel güvenlik modülü yakında!",iletisim:"Aşağıdaki form veya @omerwebs üzerinden ulaşabilirsiniz."};to.textContent="> "+c+"\n"+(m[c.trim().toLowerCase()]||"Komut bulunamadı. 'help' yazın.")}
 ti.onkeydown=e=>{if(e.key==='Enter'&&e.target.value){cmd(e.target.value);e.target.value=''}};
 async function sc(){const u=su.value.trim();if(!u)return;sr.style.color="#67e8f9";sr.textContent="⏳ "+u+" sorgulanıyor...";const f=await fetch("/api/scan",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({target:u})});const d=await f.json();if(!d.ok){sr.textContent="❌ Siteye ulaşılamadı.";return}if(d.isCf||d.isBig){sr.style.color="#10b981";sr.textContent="✓ "+d.target+" zaten kurumsal DDoS koruması kullanıyor!"}else{sr.style.color="#f472b6";sr.innerHTML="⚠️ <b>"+d.target+"</b> üzerinde DDoS kalkanı bulunamadı (Sunucu: "+d.srv+"). <u style='cursor:pointer;color:#67e8f9' onclick=\"sel('DDoS & Güvenlik Kalkanı (500 TL)')\">500 TL'ye Korumaya Al &rarr;</u>"}}
 cf.onsubmit=async e=>{e.preventDefault();res.textContent="İletiliyor...";const f=await fetch("/api/send",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({name:fn.value,contact:fc.value,service:ss.value,message:fm.value})});const k=await f.json();res.textContent=k.ok?"✓ Siparişiniz Telegram hesabına iletildi!":"Hata oluştu.";if(k.ok)e.target.reset()};
