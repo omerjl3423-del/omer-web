@@ -59,12 +59,12 @@ input,textarea,select{width:100%;padding:12px 14px;border-radius:10px;background
   </div>
 </div>
 <div class="box">
-  <h2 style="font-size:1.15rem;margin-bottom:12px">// Canlı Siber Terminal & Site Analizi</h2>
+  <h2 style="font-size:1.15rem;margin-bottom:12px">// Canlı Siber Terminal & Gerçek Site Analizi</h2>
   <div class="term">
     <div class="term-out" id="to">Komutlar için 'help' yazıp Enter'a basın...</div>
     <div class="term-in"><span>omer@cyber:~$</span><input id="ti" placeholder="help, durum, fiyatlar, zmeex..."></div>
   </div>
-  <div class="scan"><input id="su" placeholder="Sitenizi test edin (örn: siteadiniz.com)"><button class="btn tg" onclick="sc()">Analiz Et</button></div>
+  <div class="scan"><input id="su" placeholder="Gerçek DNS/DDoS kontrolü (örn: google.com veya siteniz.com)"><button class="btn tg" onclick="sc()">Analiz Et</button></div>
   <div id="sr" style="margin-top:10px;color:#67e8f9;font-size:.9rem;font-weight:600"></div>
 </div>
 <div class="box">
@@ -93,7 +93,15 @@ function tp(){const c=w[i];document.getElementById("type").textContent=c.slice(0
 function sel(v){document.getElementById('ss').value=v;document.getElementById('iletisim').scrollIntoView({behavior:'smooth'})}
 function cmd(c){const m={help:"Komutlar: durum, fiyatlar, zmeex, iletisim",durum:"[AKTİF] Cloudflare DDoS Kalkanı çalışıyor (%99.99 Uptime).",fiyatlar:"DDoS Kalkanı: 500 TL | Web Sitesi: 1.500 TL | Linux: 750 TL",zmeex:"[ZMEEX - SHADOW] Özel güvenlik ve otomasyon modülü yakında!",iletisim:"Aşağıdaki form veya @omerwebs üzerinden ulaşabilirsiniz."};document.getElementById('to').textContent="> "+c+"\n"+(m[c.trim().toLowerCase()]||"Komut bulunamadı. 'help' yazın.")}
 document.getElementById('ti').onkeydown=e=>{if(e.key==='Enter'&&e.target.value){cmd(e.target.value);e.target.value=''}};
-function sc(){const u=document.getElementById('su').value.trim(),r=document.getElementById('sr');if(!u)return;r.textContent="⏳ "+u+" taranıyor...";setTimeout(()=>r.innerHTML="⚠️ <b>"+u+"</b> için DDoS koruması önerilir. <u style='cursor:pointer;color:#ec4899' onclick=\"sel('DDoS & Güvenlik Kalkanı (500 TL)')\">500 TL'ye Korumaya Al &rarr;</u>",1200)}
+async function sc(){
+  const u=document.getElementById('su').value.trim(),r=document.getElementById('sr');if(!u)return;
+  r.style.color="#67e8f9";r.textContent="⏳ "+u+" sunucu başlıkları ve DDoS kalkanı sorgulanıyor...";
+  const f=await fetch("/api/scan",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({target:u})});
+  const d=await f.json();
+  if(!d.ok){r.textContent="❌ Siteye ulaşılamadı veya geçersiz alan adı.";return}
+  if(d.isCf||d.isBig){r.style.color="#10b981";r.textContent="✓ "+d.target+" zaten kurumsal DDoS koruması ("+(d.isCf?"Cloudflare Kalkanı":"Kurumsal Altyapı")+") kullanıyor!"}
+  else{r.style.color="#f472b6";r.innerHTML="⚠️ <b>"+d.target+"</b> üzerinde Cloudflare DDoS kalkanı tespit edilmedi (Sunucu: "+d.srv+"). <u style='cursor:pointer;color:#67e8f9' onclick=\"sel('DDoS & Güvenlik Kalkanı (500 TL)')\">500 TL'ye Korumaya Al &rarr;</u>"}
+}
 document.getElementById('cf').onsubmit=async e=>{e.preventDefault();const r=document.getElementById('res');r.textContent="İletiliyor...";const f=await fetch("/api/send",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({name:fn.value,contact:fc.value,service:ss.value,message:fm.value})});const k=await f.json();r.textContent=k.ok?"✓ Siparişiniz Telegram hesabına iletildi!":"Hata oluştu.";if(k.ok)e.target.reset()};
 </script>
 </body>
