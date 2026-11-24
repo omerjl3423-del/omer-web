@@ -42,13 +42,7 @@ h1{font-size:1.45rem;font-weight:900;margin-bottom:3px}
       <div class="dot" style="background:#f59e0b" onclick="th('#f59e0b','#ef4444','#8b5cf6')"></div>
     </div>
     <button class="cp-btn" id="cpb" onclick="cp()">🔗 Linki Kopyala</button>
-  </div>function th(a,b,c){const r=document.documentElement.style;r.setProperty('--c1',a);r.setProperty('--c2',b);r.setProperty('--c3',c)}
-function cp(){navigator.clipboard.writeText(location.href);cpb.textContent='✓ Kopyalandı!';setTimeout(()=>cpb.textContent='🔗 Linki Kopyala',2000)}
-function sw(n){p1.style.display=n===1?'grid':'none';p2.style.display=n===2?'block':'none';t1.className='tab'+(n===1?' act':'');t2.className='tab'+(n===2?' act':'')}
-function chkPw(v){if(!v){pwRes.textContent='Analiz için yazmaya başlayın...';return}let s=v.length*10+(v.match(/[A-Z]/)?15:0)+(v.match(/[0-9]/)?15:0)+(v.match(/[^a-zA-Z0-9]/)?25:0);pwRes.innerHTML=s<40?'⚠️ Çok Zayıf: <b>Birkaç saniyede</b> kırılır!':s<75?'🛡️ Orta: <b>3 Ay</b> sürer (Sembol ekleyin).':'🔥 Kırılmaz: Süper bilgisayarlarla <b>400+ Yıl</b> sürer!'}
-function mkQr(v){if(!v.trim()){qrBox.innerHTML='';return}const c=document.createElement('canvas');c.width=c.height=130;const x=c.getContext('2d');x.fillStyle='#fff';x.fillRect(0,0,130,130);x.fillStyle='#090514';let h=0;for(let i=0;i<v.length;i++)h=(h*31+v.charCodeAt(i))>>>0;for(let r=0;r<11;r++)for(let col=0;col<11;col++){const f=(r<3&&col<3)||(r<3&&col>7)||(r>7&&col<3);if(f||((h>>(r+col)%24)&1))x.fillRect(10+col*10,10+r*10,9,9)}x.clearRect(20,20,10,10);x.clearRect(100,20,10,10);x.clearRect(20,100,10,10);qrBox.innerHTML='';c.style.borderRadius='10px';c.style.border='2px solid #06b6d4';qrBox.appendChild(c)}
-setInterval(()=>{clk.textContent='● IST '+new Date().toLocaleTimeString('tr-TR',{hour:'2-digit',minute:'2-digit'})},1000);
-
+  </div>
   <div class="av"><div class="av-in">ÖMR</div></div>
   <h1>@omerwebs <span style="color:#06b6d4;font-size:1.05rem">✓</span></h1>
   <p class="bio">İstanbul // Siber Güvenlik & Web Tasarım ✨</p>
@@ -75,7 +69,17 @@ setInterval(()=>{clk.textContent='● IST '+new Date().toLocaleTimeString('tr-TR
       <b style="font-size:.82rem;color:#67e8f9">📱 Anlık QR Kod Oluşturucu</b>
       <input id="qri" placeholder="Link veya metin yazın..." oninput="mkQr(this.value)">
       <div id="qrBox" style="text-align:center;margin-top:8px"></div>
-    
+    </div>
+  </div>
+  <a href="/#iletisim" class="cta">⚡ Sen de Kendi VIP Sayfanı Yaptır (400 TL)</a>
+</div>
+<script>
+function th(a,b,c){const r=document.documentElement.style;r.setProperty('--c1',a);r.setProperty('--c2',b);r.setProperty('--c3',c)}
+function cp(){navigator.clipboard.writeText(location.href);cpb.textContent='✓ Kopyalandı!';setTimeout(()=>cpb.textContent='🔗 Linki Kopyala',2000)}
+function sw(n){p1.style.display=n===1?'grid':'none';p2.style.display=n===2?'block':'none';t1.className='tab'+(n===1?' act':'');t2.className='tab'+(n===2?' act':'')}
+function chkPw(v){if(!v){pwRes.textContent='Analiz için yazmaya başlayın...';return}let s=v.length*10+(v.match(/[A-Z]/)?15:0)+(v.match(/[0-9]/)?15:0)+(v.match(/[^a-zA-Z0-9]/)?25:0);pwRes.innerHTML=s<40?'⚠️ Çok Zayıf: <b>Birkaç saniyede</b> kırılır!':s<75?'🛡️ Orta: <b>3 Ay</b> sürer (Sembol ekleyin).':'🔥 Kırılmaz: Süper bilgisayarlarla <b>400+ Yıl</b> sürer!'}
+function mkQr(v){if(!v.trim()){qrBox.innerHTML='';return}const c=document.createElement('canvas');c.width=c.height=130;const x=c.getContext('2d');x.fillStyle='#fff';x.fillRect(0,0,130,130);x.fillStyle='#090514';let h=0;for(let i=0;i<v.length;i++)h=(h*31+v.charCodeAt(i))>>>0;for(let r=0;r<11;r++)for(let col=0;col<11;col++){const f=(r<3&&col<3)||(r<3&&col>7)||(r>7&&col<3);if(f||((h>>(r+col)%24)&1))x.fillRect(10+col*10,10+r*10,9,9)}x.clearRect(20,20,10,10);x.clearRect(100,20,10,10);x.clearRect(20,100,10,10);qrBox.innerHTML='';c.style.borderRadius='10px';c.style.border='2px solid #06b6d4';qrBox.appendChild(c)}
+setInterval(()=>{clk.textContent='● IST '+new Date().toLocaleTimeString('tr-TR',{hour:'2-digit',minute:'2-digit'})},1000);
 </script>
 </body>
 </html>
