@@ -84,17 +84,16 @@
     <h2 style="font-size:1.15rem;color:#e2e8f0">// Güvenli İletişim & Teklif Formu</h2>
     <p style="font-size:.9rem;margin:8px 0 0">Telefon numaranızı paylaşmanıza gerek yoktur; dönüş yapılmasını istediğiniz e-posta veya Telegram kullanıcı adınızı bırakmanız yeterlidir.</p>
     <form id="contactForm">
-      <input type="hidden" name="access_key" value="7d48a9a3-5c3c-4f79-93d0-5fb9d220e61a">
-      <input type="text" name="name" placeholder="Adınız veya Takma Adınız" required>
-      <input type="text" name="contact" placeholder="Size Nasıl Dönüş Yapalım? (E-posta veya @Telegram)" required>
-      <select name="service" id="serviceSelect">
+      <input type="text" id="fname" placeholder="Adınız veya Takma Adınız" required>
+      <input type="text" id="fcontact" placeholder="Size Nasıl Dönüş Yapalım? (E-posta veya @Telegram)" required>
+      <select id="serviceSelect">
         <option value="DDoS & Güvenlik Kalkanı">Hizmet: DDoS & Güvenlik Kalkanı</option>
         <option value="Modern & Hızlı Web Sitesi">Hizmet: Modern & Hızlı Web Sitesi</option>
         <option value="Linux & Otomasyon">Hizmet: Linux & Otomasyon</option>
         <option value="Diğer Proje">Hizmet: Özel Proje / Diğer</option>
       </select>
-      <textarea name="message" rows="3" placeholder="Projenizden kısaca bahsedin..." required></textarea>
-      <button type="submit" class="btn p" style="width:100%">Güvenli Mesaj Gönder</button>
+      <textarea id="fmsg" rows="3" placeholder="Projenizden kısaca bahsedin..." required></textarea>
+      <button type="submit" class="btn p" style="width:100%">Telegram'a Güvenli Mesaj Gönder</button>
       <div id="result"></div>
     </form>
   </div>
@@ -124,15 +123,27 @@ function selectService(val) {
 document.getElementById('contactForm').addEventListener('submit', async function(e) {
   e.preventDefault();
   const res = document.getElementById('result');
-  res.textContent = "Şifreli kanal üzerinden gönderiliyor...";
-  const formData = new FormData(this);
-  const response = await fetch("https://web3forms.com", { method: "POST", body: formData });
-  const data = await response.json();
-  if (data.success) {
-    res.textContent = "✓ Mesajınız başarıyla iletildi! En kısa sürede dönüş yapılacaktır.";
-    this.reset();
-  } else {
-    res.textContent = "Hata oluştu: Lütfen bağlantınızı kontrol edip tekrar deneyin.";
+  res.textContent = "Telegram kanalına şifreli olarak iletiliyor...";
+  
+  const token = "9065128822:AAECKfppUqa1bO6zjiQmRM3PUhmWs552DtTo";
+  const chatId = "8963684508";
+  const text = `🚀 *YENİ SİTE SİPARİŞİ / MESAJI*\n\n👤 *Gönderen:* ${document.getElementById('fname').value}\n📞 *İletişim:* ${document.getElementById('fcontact').value}\n🛠 *Hizmet:* ${document.getElementById('serviceSelect').value}\n📝 *Mesaj:* ${document.getElementById('fmsg').value}`;
+
+  try {
+    const response = await fetch(`https://telegram.org{token}/sendMessage`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ chat_id: chatId, text: text, parse_mode: "Markdown" })
+    });
+    const data = await response.json();
+    if (data.ok) {
+      res.textContent = "✓ Mesajınız doğrudan Ömer'in Telegram hesabına iletildi!";
+      this.reset();
+    } else {
+      res.textContent = "Hata: Botu Telegram'dan başlattığınızdan (Start) emin olun.";
+    }
+  } catch (err) {
+    res.textContent = "Bağlantı hatası oluştu, lütfen tekrar deneyin.";
   }
 });
 </script>
