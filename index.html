@@ -141,10 +141,10 @@ document.getElementById('contactForm').addEventListener('submit', async function
       res.textContent = "✓ Mesajınız doğrudan Ömer'in Telegram hesabına iletildi!";
       this.reset();
     } else {
-      res.textContent = "Telegram Hatası: Botu Telegram'dan başlattığınızdan (Start) emin olun.";
+      res.textContent = "Detay: " + JSON.stringify(data);
     }
   } catch (err) {
-    res.textContent = "Sunucu yanıt vermedi. Lütfen yukarıdaki Telegram (@omerwebs) butonunu kullanın.";
+    res.textContent = "Sunucu yanıt vermedi: " + err.message;
   }
 });
 </script>
