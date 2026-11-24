@@ -25,9 +25,11 @@
   @keyframes cur{50%{opacity:0}}
   p{color:#cbd5e1;line-height:1.65;margin-bottom:26px;font-size:1.02rem}
   .btns{display:flex;flex-wrap:wrap;gap:14px}
-  .btn{padding:12px 24px;border-radius:12px;text-decoration:none;font-weight:700;font-size:.92rem;transition:.3s;cursor:pointer;border:none}
+  .btn{padding:12px 24px;border-radius:12px;text-decoration:none;font-weight:700;font-size:.92rem;transition:.3s;cursor:pointer;border:none;display:inline-flex;align-items:center;justify-content:center}
   .p{background:linear-gradient(135deg,#ec4899,#8b5cf6);color:#fff;box-shadow:0 10px 25px rgba(236,72,153,.35)}
   .p:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 15px 30px rgba(139,92,246,.5)}
+  .tg{background:linear-gradient(135deg,#06b6d4,#3b82f6);color:#fff;box-shadow:0 10px 25px rgba(6,182,212,.3)}
+  .tg:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 15px 30px rgba(6,182,212,.45)}
   .s{background:rgba(255,255,255,.07);color:#fff;border:1px solid rgba(255,255,255,.18)}
   .s:hover{background:rgba(6,182,212,.15);border-color:#06b6d4;color:#67e8f9;transform:translateY(-3px)}
   .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:16px}
@@ -48,10 +50,11 @@
   <div class="box">
     <div class="badge"><span class="pulse"></span>ÖMER // SİBER GÜVENLİK & YAZILIM</div>
     <h1 class="hero-title"><span id="type" class="grad-text"></span><span class="cursor"></span></h1>
-    <p>Yeni nesil DDoS savunma sistemleri, ışık hızında web mimarileri ve özel siber güvenlik çözümleri geliştiriyorum. Kişisel bilgileriniz tamamen gizli tutularak aşağıdan teklif alabilirsiniz.</p>
+    <p>Yeni nesil DDoS savunma sistemleri, ışık hızında web mimarileri ve özel siber güvenlik çözümleri geliştiriyorum. Kişisel bilgileriniz tamamen gizli tutularak Telegram veya form üzerinden teklif alabilirsiniz.</p>
     <div class="btns">
+      <a href="https://t.me" target="_blank" class="btn tg">Telegram (@omerwebs)</a>
       <a href="#iletisim" class="btn p">Gizli Teklif Formu</a>
-      <a href="https://github.com" target="_blank" class="btn s">GitHub Profilim</a>
+      <a href="https://github.com" target="_blank" class="btn s">GitHub</a>
       <button class="btn s" onclick="alert('Zmeex - Shadow projesi aktif!')">Zmeex - Shadow</button>
     </div>
   </div>
