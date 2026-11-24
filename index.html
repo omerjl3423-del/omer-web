@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -32,11 +31,15 @@
   .s{background:rgba(255,255,255,.07);color:#fff;border:1px solid rgba(255,255,255,.18)}
   .s:hover{background:rgba(6,182,212,.15);border-color:#06b6d4;color:#67e8f9;transform:translateY(-3px)}
   .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:16px}
-  .card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);padding:22px;border-radius:16px;transition:.3s;position:relative;overflow:hidden}
+  .card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);padding:22px;border-radius:16px;transition:.3s}
   .card:hover{transform:translateY(-6px);border-color:#ec4899;box-shadow:0 15px 30px rgba(236,72,153,.2)}
   .card h3{font-size:1.08rem;margin-bottom:8px;color:#67e8f9}
   .card p{font-size:.88rem;margin-bottom:16px;color:#94a3b8}
-  .card a{color:#f472b6;font-size:.88rem;text-decoration:none;font-weight:700}
+  .card a{color:#f472b6;font-size:.88rem;text-decoration:none;font-weight:700;cursor:pointer}
+  form{display:grid;gap:14px;margin-top:16px}
+  input,textarea,select{width:100%;padding:13px 16px;border-radius:12px;background:rgba(9,5,20,.7);border:1px solid rgba(255,255,255,.15);color:#fff;font-size:.95rem;outline:none;transition:.2s}
+  input:focus,textarea:focus,select:focus{border-color:#06b6d4}
+  #result{font-size:.9rem;color:#67e8f9;margin-top:8px;font-weight:600}
 </style>
 </head>
 <body>
@@ -45,34 +48,55 @@
   <div class="box">
     <div class="badge"><span class="pulse"></span>ÖMER // SİBER GÜVENLİK & YAZILIM</div>
     <h1 class="hero-title"><span id="type" class="grad-text"></span><span class="cursor"></span></h1>
-    <p>Yeni nesil DDoS savunma sistemleri, ışık hızında web mimarileri ve özel siber güvenlik çözümleri geliştiriyorum. Projelerimi keşfet veya hemen iletişime geç.</p>
+    <p>Yeni nesil DDoS savunma sistemleri, ışık hızında web mimarileri ve özel siber güvenlik çözümleri geliştiriyorum. Kişisel bilgileriniz tamamen gizli tutularak aşağıdan teklif alabilirsiniz.</p>
     <div class="btns">
-      <a href="mailto:omerjl3423@://gmail.com" class="btn p">İletişime Geç</a>
+      <a href="#iletisim" class="btn p">Gizli Teklif Formu</a>
       <a href="https://github.com" target="_blank" class="btn s">GitHub Profilim</a>
       <button class="btn s" onclick="alert('Zmeex - Shadow projesi aktif!')">Zmeex - Shadow</button>
     </div>
   </div>
+
   <div class="box">
     <h2 style="font-size:1.15rem;color:#e2e8f0">// Hizmetler & Çözümler</h2>
     <div class="grid">
       <div class="card">
         <h3>DDoS & Güvenlik Kalkanı</h3>
         <p>Cloudflare kurumsal koruma, SSL ve gelişmiş güvenlik başlıkları kurulumu.</p>
-        <a href="mailto:omerjl3423@://gmail.com">Teklif Al &rarr;</a>
+        <a onclick="selectService('DDoS & Güvenlik Kalkanı')">Seç & Teklif Al &rarr;</a>
       </div>
       <div class="card">
         <h3>Modern & Hızlı Web Sitesi</h3>
         <p>Veritabanı açığı olmayan, animasyonlu ve yüksek hızlı özel web tasarımı.</p>
-        <a href="mailto:omerjl3423@://gmail.com">Teklif Al &rarr;</a>
+        <a onclick="selectService('Modern & Hızlı Web Sitesi')">Seç & Teklif Al &rarr;</a>
       </div>
       <div class="card">
         <h3>Linux & Otomasyon</h3>
         <p>Sunucu güvenliği, yedekleme sistemleri ve özel Python/Bash araçları.</p>
-        <a href="mailto:omerjl3423@://gmail.com">Teklif Al &rarr;</a>
+        <a onclick="selectService('Linux & Otomasyon')">Seç & Teklif Al &rarr;</a>
       </div>
     </div>
   </div>
+
+  <div class="box" id="iletisim">
+    <h2 style="font-size:1.15rem;color:#e2e8f0">// Güvenli İletişim & Teklif Formu</h2>
+    <p style="font-size:.9rem;margin:8px 0 0">Telefon numaranızı paylaşmanıza gerek yoktur; dönüş yapılmasını istediğiniz e-posta veya Telegram kullanıcı adınızı bırakmanız yeterlidir.</p>
+    <form id="contactForm">
+      <input type="hidden" name="access_key" value="7d48a9a3-5c3c-4f79-93d0-5fb9d220e61a">
+      <input type="text" name="name" placeholder="Adınız veya Takma Adınız" required>
+      <input type="text" name="contact" placeholder="Size Nasıl Dönüş Yapalım? (E-posta veya @Telegram)" required>
+      <select name="service" id="serviceSelect">
+        <option value="DDoS & Güvenlik Kalkanı">Hizmet: DDoS & Güvenlik Kalkanı</option>
+        <option value="Modern & Hızlı Web Sitesi">Hizmet: Modern & Hızlı Web Sitesi</option>
+        <option value="Linux & Otomasyon">Hizmet: Linux & Otomasyon</option>
+        <option value="Diğer Proje">Hizmet: Özel Proje / Diğer</option>
+      </select>
+      <textarea name="message" rows="3" placeholder="Projenizden kısaca bahsedin..." required></textarea>
+      <button type="submit" class="btn p" style="width:100%">Güvenli Mesaj Gönder</button>
+      <div id="result"></div>
+    </form>
+  </div>
 </div>
+
 <script>
 const words = ["Dijital Dünyama Hoş Geldin.", "Siber Güvenlik & Yazılım.", "Geleceği Kodluyorum."];
 let i = 0, j = 0, isDel = false;
@@ -88,6 +112,26 @@ function typeLoop() {
   }
 }
 typeLoop();
+
+function selectService(val) {
+  document.getElementById('serviceSelect').value = val;
+  document.getElementById('iletisim').scrollIntoView({ behavior: 'smooth' });
+}
+
+document.getElementById('contactForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const res = document.getElementById('result');
+  res.textContent = "Şifreli kanal üzerinden gönderiliyor...";
+  const formData = new FormData(this);
+  const response = await fetch("https://web3forms.com", { method: "POST", body: formData });
+  const data = await response.json();
+  if (data.success) {
+    res.textContent = "✓ Mesajınız başarıyla iletildi! En kısa sürede dönüş yapılacaktır.";
+    this.reset();
+  } else {
+    res.textContent = "Hata oluştu: Lütfen bağlantınızı kontrol edip tekrar deneyin.";
+  }
+});
 </script>
 </body>
-</html 
+</html>
