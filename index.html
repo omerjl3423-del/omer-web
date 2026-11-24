@@ -123,30 +123,28 @@ function selectService(val) {
 document.getElementById('contactForm').addEventListener('submit', async function(e) {
   e.preventDefault();
   const res = document.getElementById('result');
-  res.textContent = "Telegram kanalına iletiliyor...";
+  res.textContent = "Şifreli sunucu üzerinden Telegram'a iletiliyor...";
   
-  const token = "9065128822:AAECKfppUqa1bO6zjiQmRM3PUhmWs552DtTo";
-  const chatId = "8963684508";
-  const text = `🚀 YENİ SİTE SİPARİŞİ / MESAJI\n\n👤 Gönderen: ${document.getElementById('fname').value}\n📞 İletişim: ${document.getElementById('fcontact').value}\n🛠 Hizmet: ${document.getElementById('serviceSelect').value}\n📝 Mesaj: ${document.getElementById('fmsg').value}`;
-
   try {
-    const params = new URLSearchParams();
-    params.append("chat_id", chatId);
-    params.append("text", text);
-
-    const response = await fetch(`https://telegram.org{token}/sendMessage`, {
+    const response = await fetch("/api/send", {
       method: "POST",
-      body: params
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: document.getElementById('fname').value,
+        contact: document.getElementById('fcontact').value,
+        service: document.getElementById('serviceSelect').value,
+        message: document.getElementById('fmsg').value
+      })
     });
     const data = await response.json();
     if (data.ok) {
       res.textContent = "✓ Mesajınız doğrudan Ömer'in Telegram hesabına iletildi!";
       this.reset();
     } else {
-      res.textContent = "Telegram Hatası: " + (data.description || "Botu başlattığınızdan (Start) emin olun.");
+      res.textContent = "Telegram Hatası: Botu Telegram'dan başlattığınızdan (Start) emin olun.";
     }
   } catch (err) {
-    res.textContent = "Bağlantı engellendi. Lütfen yukarıdaki Telegram (@omerwebs) butonunu kullanın.";
+    res.textContent = "Sunucu yanıt vermedi. Lütfen yukarıdaki Telegram (@omerwebs) butonunu kullanın.";
   }
 });
 </script>
