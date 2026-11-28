@@ -1,9 +1,15 @@
 {
   "name": "omer-web",
   "main": "worker.js",
-  "compatibility_date": "2026-11-24",
+  "compatibility_date": "2026-11-28",
   "assets": {
-    "directory": ".",
-    "binding": "ASSETS"
-  }
+    "directory": "."
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "omersiber-db",
+      "database_id": "6e57df76-4a0a-4f7f-b6d4-cbf88077d0f5"
+    }
+  ]
 }
