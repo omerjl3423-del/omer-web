@@ -3,13 +3,16 @@ export default async function handler(req, res) {
   const { name, contact, service, message } = req.body || {};
   try {
     if (process.env.CF_ACCOUNT_ID && process.env.CF_API_TOKEN) {
-      await fetch(`https://api.cloudflare.com/client/v4/accounts/${process.env.CF_ACCOUNT_ID}/d1/database/6e57df76-4a0a-4f7f-b6d4-cbf88077d0f5/query`, {
+           const cfUrl = ["https:", "", "api.cloudflare.com", "client", "v4", "accounts", process.env.CF_ACCOUNT_ID, "d1", "database", "6e57df76-4a0a-4f7f-b6d4-cbf88077d0f5", "query"].join("/");
+      const d1 = await fetch(cfUrl, {
         method: "POST",
         headers: { "Authorization": `Bearer ${process.env.CF_API_TOKEN}`, "Content-Type": "application/json" },
         body: JSON.stringify({ sql: "INSERT INTO mesajlar (name, contact, service, message) VALUES (?, ?, ?, ?)", params: [name || "", contact || "", service || "", message || ""] })
       });
+      const d1Data = await d1.json();
+      if (!d1Data.success) console.error("D1_HATA:", JSON.stringify(d1Data));
     }
-    const base = `https://api.telegram.org./bot${process.env.TELEGRAM_BOT_TOKEN}`;
+    const base = "https://" + "api.telegram.org/bot" + process.env.TELEGRAM_BOT_TOKEN;
     let chatId = (process.env.TELEGRAM_CHAT_ID || "").trim();
     const upd = await fetch(`${base}/getUpdates`).then(r => r.json()).catch(() => null);
     if (upd?.result?.length) chatId = upd.result[upd.result.length - 1].message?.chat?.id || chatId;
