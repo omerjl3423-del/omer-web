@@ -15,8 +15,15 @@ export default async function handler(req, res) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ chat_id: process.env.TELEGRAM_CHAT_ID, text })
     });
-    return res.status(200).json({ ok: tg.ok });
+      const tgData = await tg.json();
+    if (!tg.ok) console.error("TG_HATA:", tgData);
+    return res.status(200).json({ ok: tg.ok, err: tgData.description || "" });
   } catch (e) {
+    console.error("SUNUCU_HATA:", e.message);
     return res.status(500).json({ ok: false });
   }
 }
+
+
+  
+
