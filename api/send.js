@@ -9,21 +9,20 @@ export default async function handler(req, res) {
         body: JSON.stringify({ sql: "INSERT INTO mesajlar (name, contact, service, message) VALUES (?, ?, ?, ?)", params: [name || "", contact || "", service || "", message || ""] })
       });
     }
+    const base = `https://api.telegram.org./bot${process.env.TELEGRAM_BOT_TOKEN}`;
+    let chatId = (process.env.TELEGRAM_CHAT_ID || "").trim();
+    const upd = await fetch(`${base}/getUpdates`).then(r => r.json()).catch(() => null);
+    if (upd?.result?.length) chatId = upd.result[upd.result.length - 1].message?.chat?.id || chatId;
     const text = `🚀 Yeni Sipariş/Mesaj!\n👤 İsim: ${name}\n📱 İletişim: ${contact}\n🛠️ Hizmet: ${service}\n💬 Mesaj: ${message}`;
-    const tg = await fetch(`https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/sendMessage`, {
+    const tg = await fetch(`${base}/sendMessage`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ chat_id: process.env.TELEGRAM_CHAT_ID, text })
+      body: JSON.stringify({ chat_id: chatId, text })
     });
-      const tgData = await tg.json();
+    const tgData = await tg.json();
     if (!tg.ok) console.error("TG_HATA:", tgData);
-    return res.status(200).json({ ok: tg.ok, err: tgData.description || "" });
+    return res.status(200).json({ ok: tg.ok });
   } catch (e) {
-    console.error("SUNUCU_HATA:", e.message);
     return res.status(500).json({ ok: false });
   }
 }
-
-
-  
-
