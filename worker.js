@@ -9,7 +9,9 @@ export default {
             .bind(name || "", contact || "", service || "", message || "").run();
         }
         const text = `🚀 Yeni Sipariş/Mesaj!\n👤 İsim: ${name}\n📱 İletişim: ${contact}\n🛠️ Hizmet: ${service}\n💬 Mesaj: ${message}`;
-        const tg = await fetch(`https://api.telegram.org/bot${env.TELEGRAM_BOT_TOKEN}/sendMessage`, {)
+        const tgUrl = ["https:", "", "api.telegram.org", "bot" + env.TELEGRAM_BOT_TOKEN, "sendMessage"].join("/");
+const tg = await fetch(tgUrl, {
+
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ chat_id: env.TELEGRAM_CHAT_ID, text })
